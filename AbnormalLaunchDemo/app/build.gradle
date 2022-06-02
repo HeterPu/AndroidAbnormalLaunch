@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'apm-plugin'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.test.myapplication"
+        minSdk 21
+        targetSdk 31
+        versionCode 39999
+        versionName "39.9999"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+
+
+ApmPlugin {
+    // 是否进行插桩
+    enable true
+    // 是否在Debug包插桩，默认不插桩
+    enableInDebug true
+    // 启动分析开关：监控App启动耗时，需要同时开启pageLoadSwitch
+    startSwitch = true
+    // 页面响应开关：监控Activity的生命周期耗时
+    pageLoadSwitch = true
+    // 网络监控开关：监控okhttp3的网络请求
+    okHttp3Switch = true
+    // 白名单下的包进行插桩，需要填写要插装类所在的包名，支持前缀配置
+    whiteList = [
+            "com"
+    ]
+    // 黑名单包下类不进行插桩，可以配置包名和类名，没有可以填空
+    blackList = [
+    ]
+}
+
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    implementation 'com.volcengine:apm_insight:1.4.6.cn'
+    implementation 'com.volcengine:apm_insight_crash:1.4.4'
+}
