@@ -1,5 +1,6 @@
 package com.test.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -15,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.test.myapplication.databinding.ActivityMainBinding;
+import com.test.myapplication.ui.login.LoginActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,24 +42,13 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//                throw new RuntimeException("Peter  是多少大");
-                try {
-                    Thread.sleep(30000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-//                throw new RuntimeException("peter test");
-            }
-        },5000);
     }
 
     @Override
